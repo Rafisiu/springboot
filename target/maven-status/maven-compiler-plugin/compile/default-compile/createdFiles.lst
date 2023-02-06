@@ -1,0 +1,10 @@
+org\example\model\Siswa.class
+org\example\services\Luasimpl.class
+org\example\model\Pengguna.class
+org\example\config\Konfigurasi.class
+org\example\services\Luas.class
+org\example\model\Hak.class
+org\example\services\LuasimplDua.class
+org\example\Main.class
+org\example\ui\HomeAction.class
+org\example\model\Pelajaran.class

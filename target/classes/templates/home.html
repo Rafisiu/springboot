@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Data Pengguna</h1>
+<table th:border="1">
+    <thead>
+    <tr>
+        <th>Nomor</th>
+        <th>Nama Pengguna</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tr th:each="pengguna : ${lp} ">
+        <td th:text="${pengguna.getId()}" ></td>
+        <td th:text="${pengguna.getNamaPengguna()}" ></td>
+        <td th:text="${pengguna.getEmail()}" ></td>
+    </tr>
+    <tr th:border="0">
+        <td colspan="2"><button type="submit">Submit</button></td>
+        <td><input type="text" name="nama" id="nama"></td>
+    </tr>
+</table>
+</body>
+</html>
