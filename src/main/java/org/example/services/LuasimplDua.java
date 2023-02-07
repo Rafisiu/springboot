@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.model.Hak;
+import org.example.model.Page;
 import org.example.model.Pengguna;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -84,6 +85,56 @@ public class LuasimplDua implements Luas {
     @Override
     public void updateHak(Hak hak) {
         jdbcTemplate.update("UPDATE hak_akses SET nama_hak_akses = ? WHERE id = ?",hak.getNamaHak(),hak.getId());
+    }
+
+    @Override
+    public List<Pengguna> getListpenggunaPaging(Page page) {
+        String sql = "SELECT id, nama_pengguna, email FROM pengguna where 1=1 ";
+        if (page.getParam() != null && !page.getParam().isEmpty()){
+            sql +="and nama_pengguna ilike '%'||'"+page.getParam() .get("nama")+"'||'%' ";
+        }
+        sql += " limit "+page.getSize()+ " offset "+page.getEnd();
+        return jdbcTemplate.query (sql, (rs,  rowNum) -> {
+            Pengguna pengguna = new Pengguna();
+            pengguna.setId(rs.getInt("id"));
+            pengguna.setNamaPengguna(rs.getString("nama_pengguna"));
+            pengguna.setEmail(rs.getString("email"));
+            return pengguna;
+        } );
+    }
+
+    @Override
+    public int getBanyakPengguna(Page page) {
+        String sql = "SELECT count(id) as banyak FROM pengguna WHERE 1=1";
+        if (page.getParam() != null && !page.getParam().isEmpty()){
+            sql +=" and nama_pengguna ilike '%'||'"+page.getParam() .get("nama")+"'||'%' ";
+        }
+        return jdbcTemplate.queryForObject(sql, Integer.class);
+    }
+
+    @Override
+    public List<Hak> getListhakPaging(Page page) {
+        String sql = "SELECT id, nama_hak_akses FROM hak_akses where 1=1 ";
+        if (page.getParam() != null && !page.getParam().isEmpty()){
+            sql +="and nama_hak_akses ilike '%'||'"+page.getParam() .get("nama")+"'||'%' ";
+        }
+        sql += " limit "+page.getSize()+ " offset "+page.getEnd();
+        return jdbcTemplate.query (sql, (rs,  rowNum) -> {
+            Hak hak = new Hak();
+            hak.setId(rs.getInt("id"));
+            hak.setNamaHak(rs.getString("nama_hak_akses"));
+            return hak;
+        } );
+    }
+
+
+    @Override
+    public int getBanyakHak(Page page) {
+        String sql = "SELECT count(id) as banyak FROM hak_akses WHERE 1=1";
+        if (page.getParam() != null && !page.getParam().isEmpty()){
+            sql +=" and nama_hak_akses ilike '%'||'"+page.getParam() .get("nama")+"'||'%' ";
+        }
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
 

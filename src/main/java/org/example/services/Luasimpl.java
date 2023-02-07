@@ -1,6 +1,7 @@
 package org.example.services;
 
 import org.example.model.Hak;
+import org.example.model.Page;
 import org.example.model.Pengguna;
 import org.springframework.stereotype.Component;
 
@@ -51,6 +52,27 @@ public class Luasimpl implements Luas{
     @Override
     public void updateHak(Hak hak) {
 
+    }
+
+    @Override
+    public List<Pengguna> getListpenggunaPaging(Page page) {
+        return null;
+    }
+
+    @Override
+    public int getBanyakPengguna(Page page) {
+        return 0;
+    }
+
+    @Override
+    public List<Hak> getListhakPaging(Page page) {
+        return null;
+    }
+
+
+    @Override
+    public int getBanyakHak(Page page) {
+        return 0;
     }
 
 //    @Override

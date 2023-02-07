@@ -1,9 +1,17 @@
 package org.example.model;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+
 public class Pengguna {
     private int id;
-
+    @NotBlank(message = "Nama Tidak Boleh Kosong")
     private String namaPengguna;
+
+    @NotEmpty
+    @Email(message = "Format email tidak valid")
+    private String email;
 
     public int getId() {
         return id;
@@ -29,6 +37,6 @@ public class Pengguna {
         this.email = email;
     }
 
-    private String email;
+
 
 }

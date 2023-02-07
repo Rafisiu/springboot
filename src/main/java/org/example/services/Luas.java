@@ -1,7 +1,9 @@
 package org.example.services;
 
 import org.example.model.Hak;
+import org.example.model.Page;
 import org.example.model.Pengguna;
+
 
 import java.util.List;
 
@@ -21,6 +23,14 @@ public interface Luas {
     void simpanHak(Hak hak);
 
     void updateHak(Hak hak);
+
+    List<Pengguna> getListpenggunaPaging(Page page);
+
+    int getBanyakPengguna(Page page);
+
+    List<Hak> getListhakPaging(Page page);
+
+    int getBanyakHak(Page page);
 
 //    void updatePengguna(Pengguna pengguna);
 //
